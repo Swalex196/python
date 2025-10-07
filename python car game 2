@@ -1,0 +1,27 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CarSpawner : MonoBehaviour
+{
+    public GameObject random_car_npc; // Spawn edilecek rastgele araç prefab'ı
+    bool can_spawn = true; // Araç spawn işlemine devam edip etmeyeceğini belirler
+
+    void Start()
+    {
+        StartCoroutine(bekle()); // Coroutine'i başlat
+    }
+
+    // Coroutine: Belirli aralıklarla araç spawn eder
+    IEnumerator bekle()
+    {
+        while (can_spawn == true) // Spawn işlemi devam ettiği sürece
+        {
+            // Araç oluştur ve sahneye ekle
+            Instantiate(random_car_npc, transform.position, Quaternion.identity);
+
+            // 1.8 saniye beklemeden sonra döngüyü tekrar et
+            yield return new WaitForSeconds(1.8f);
+        }
+    }
+}
