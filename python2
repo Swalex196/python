@@ -1,0 +1,34 @@
+class Hayvan:
+    def ses_cikar(self):
+        pass
+
+class Kedi(Hayvan):
+    def ses_cikar(self):
+        return "Miyav"
+
+class Köpek(Hayvan):
+    def ses_cikar(self):
+        return "Hav Hav"
+
+# Polimorfizm örneği
+def ses_ver(hayvan):
+    print(hayvan.ses_cikar())
+
+# Farklı hayvan nesneleri
+kedi = Kedi()
+kopek = Köpek()
+
+# Polimorfik fonksiyon çağrıları
+ses_ver(kedi)   # Çıktı: Miyav
+ses_ver(kopek)  # Çıktı: Hav Hav
+
+
+# Hayvan adında bir üst sınıf tanımladık. Bu sınıfın ses_cikar 
+# adlı bir metodu var ancak içeriği yok.
+
+# Kedi ve Köpek sınıfları, Hayvan sınıfını miras alıyor 
+# (inheritance). Her iki sınıf da ses_cikar metodunu kendilerine
+# has bir şekilde dolduruyor.
+
+# ses_ver adında bir fonksiyon var. Bu fonksiyon, hangi 
+# hayvan nesnesi verilirse o hayvanın ses_cikar metodunu çağırıyor.
