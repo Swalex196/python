@@ -1,0 +1,21 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using TMPro; // TextMeshPro ile çalışmak için gerekli kütüphane
+
+public class ScoreManager : MonoBehaviour
+{
+    public TMP_Text skor_tx; // Skoru göstermek için TextMeshPro öğesi
+    public static float skor; // Skor değeri, diğer sınıflardan erişilebilir
+
+    void Start()
+    {
+        skor = 0; // Oyunun başında skor sıfırlanır
+    }
+
+    void Update()
+    {
+        // Skor değerini ekranda göstermek için TextMeshPro'yu günceller
+        skor_tx.text = skor.ToString();
+    }
+}
