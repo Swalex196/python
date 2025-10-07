@@ -1,0 +1,41 @@
+class calisan:
+    
+    zam_oranı = 1.05
+    per_say = 0
+
+    def __init__(self,ad,soyad,maas):
+        self.ad = ad
+        self.soyad = soyad
+        self.maas = maas
+        self.eposta = self.ad + self.soyad +"@gmail.com"
+        calisan.per_say += 1
+    def tamad(self):
+        return "adı : {} soyadı : {}".format(self.ad,self.soyad)
+    def arttir(self):
+        self.maas = (self.maas * self.zam_oranı)
+
+personel1 = calisan("Ali","demir",2500)
+print(calisan.per_say)
+
+personel2 = calisan("kerim","bakir",1950)
+print(calisan.per_say)
+
+# print(personel1.maas)
+# personel1.arttir()
+# print(personel1.maas)
+
+print(personel2.maas)
+personel2.zam_oranı = 1.1       # Değiştirebiliyoruz
+personel2.arttir()
+print(personel2.maas)
+
+
+# print(personel1)
+# print(personel1.ad,personel1.soyad)
+# print(personel1.eposta)
+# print(personel1.tamad())
+
+# print(personel2)
+# print(personel2.ad, personel2.soyad)
+# print(personel2.eposta)
+# print(personel2.tamad())
