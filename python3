@@ -1,0 +1,25 @@
+@startuml Class DiagramBorderColor
+title Product Model
+class Product{
+    -name : string
+    -price : float
+    -quantity : int
+    --
+    +getName() : string
+    +getPrice() : float
+    +getQuantity() : int
+    --
+    +getName(value : string)
+    +getPrice(value : float)
+    +getQuantity(value : int)
+    --
+    +Product(name : string, price : float, quantity : int)
+    --
+    +getTotalPrice() : float
+}
+
+Product -up-|> Object : "<<extends>>"
+
+hide empty members
+
+@enduml
