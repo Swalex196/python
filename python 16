@@ -1,0 +1,42 @@
+class calisan():
+    def __init__(self,ad,soyad):
+        self.ad = ad
+        self.soyad = soyad
+    @property   #fonksiyon parametre haline geliyor.
+    def eposta(self):
+        self.email= self.ad + self.soyad + "@sirket.com"
+        return self.email
+    @property
+    def tamad(self):
+        return "{} {}".format(self.ad,self.soyad)
+    
+    @tamad.setter       # tam ad fonksiyonunu parametreye dönüştürdüğümüz için 23. satırda tam ad soyad verdiğimizde hata veriyor. Bu yüzden setter tanımladık
+    def tamad(self,gelenisim):
+        ad,soyad = gelenisim.split(" ")
+        self.ad = ad
+        self.soyad = soyad
+
+    @tamad.deleter
+    def tamad(self):
+        self.ad = None
+        self.soyad = None
+        print("Kullanıcı bilgileri silindi")
+
+personel1 = calisan("Ali","Demir")
+
+personel1.ad = "Can"
+
+print(personel1.ad)
+print(personel1.eposta)
+print(personel1.tamad)
+
+personel1.tamad = "Melih Erdem"
+
+print("------ Değişiklik sonrası -------")
+print(personel1.ad)
+# print(personel1.eposta())     # eposta fonksiyon olarak kalsa bunun çalışması gerekirdi lakin
+print(personel1.eposta)         # property yazıp parametre haline getirince böyle çağırmamız gerekti
+# print(personel1.tamad())
+print(personel1.tamad)
+
+del personel1.tamad # deleter'ı çalıştırıyor. O fonksiyonun içinde de ad soyadı sildik
