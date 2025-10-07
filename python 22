@@ -1,0 +1,29 @@
+class futbolcu():
+    kosu = "kosabilir"
+    depar = "depar atar"
+    maas = 500
+    def __init__(self,ayak="sağ"):
+        self.mevki = "Orta"
+        self.ayak = ayak
+    pass
+class basketbolcu():
+    turnukie = "turnike atabilir"
+    ucluk = "üçlük"
+    maas = 750
+    def __init__(self):
+        self.bolge = "ileri"
+    pass
+class multisporcu(basketbolcu,futbolcu): # burda baskın class ilk yazıldığı için basketbolcudur. maas ikisinde de olan bir özellik ama çağırmak istediğimizde basketbolcunun maası gelir çünkü baskın
+    def __init__(self,ayak):
+        basketbolcu.__init__(self)       # bunları yapınca mevki ve bolgenin ikisinede ulaşabiliyoruz.
+        futbolcu.__init__(self,ayak)     # önceden sadece basketbolcunun bolgesine erişebiliyorduk çünkü baskınxd
+    pass
+
+mahmut = multisporcu("sol")
+
+print(mahmut.turnukie)
+print(mahmut.depar)
+print(mahmut.maas)      #
+print(mahmut.bolge)
+print(mahmut.mevki)
+print(mahmut.ayak)
