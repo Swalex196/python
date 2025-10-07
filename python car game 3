@@ -1,0 +1,29 @@
+using UnityEngine;
+using UnityEngine.SceneManagement; // Sahne yönetimi için gerekli kütüphane
+using UnityEngine.UI; // UI öğeleri için gerekli kütüphane
+
+public class SceneChanger : MonoBehaviour
+{
+    public Button restartButton; // Yeniden başlatma butonunun referansı
+
+    private void Start()
+    {
+        // Sahne yüklendiğinde buton referansını bağla
+        if (restartButton != null) // Eğer buton atanmışsa
+        {
+            restartButton.onClick.AddListener(Restart); // Butonun tıklama olayına `Restart` fonksiyonunu bağla
+        }
+    }
+
+    // Oyun başlatma işlemi için sahne değiştirir
+    public void Play()
+    {
+        SceneManager.LoadScene(1); // 1 numaralı sahneyi yükle
+    }
+
+    // Oyunu yeniden başlatma işlemi için sahneyi tekrar yükler
+    public void Restart()
+    {
+        SceneManager.LoadScene(1); // 1 numaralı sahneyi yükle
+    }
+}
