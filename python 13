@@ -1,0 +1,140 @@
+1. Getter ve Setter Kullanımı
+
+class Insan:
+    def __init__(self, isim):
+        self._isim = isim
+
+    @property
+    def isim(self):
+        return self._isim
+
+    @isim.setter
+    def isim(self, yeni_isim):
+        if isinstance(yeni_isim, str) and yeni_isim.strip():
+            self._isim = yeni_isim
+        else:
+            raise ValueError("İsim geçerli bir metin olmalıdır.")
+
+i = Insan("Ahmet")
+print(i.isim)  # Getter ile okunur
+i.isim = "Mehmet"  # Setter ile atanır
+
+
+2. Yalnızca Okunabilir Özellikler
+
+class SabitDeger:
+    def __init__(self):
+        self._pi = 3.14159
+
+    @property
+    def pi(self):
+        return self._pi
+
+s = SabitDeger()
+print(s.pi)  # 3.14159
+s.pi = 3.14  # Hata: AttributeError: can't set attribute
+
+3. Hesaplanan Özellikler
+
+class Dikdortgen:
+    def __init__(self, en, boy):
+        self.en = en
+        self.boy = boy
+
+    @property
+    def alan(self):
+        return self.en * self.boy
+
+    @property
+    def cevre(self):
+        return 2 * (self.en + self.boy)
+d = Dikdortgen(4, 5)
+print(d.alan)  # 20
+print(d.cevre)  # 18
+
+4. Özelliği Sınırlandırma
+
+class Hesap:
+    def __init__(self, bakiye):
+        self._bakiye = bakiye
+
+    @property
+    def bakiye(self):
+        return self._bakiye
+
+    @bakiye.setter
+    def bakiye(self, yeni_bakiye):
+        if yeni_bakiye >= 0:
+            self._bakiye = yeni_bakiye
+        else:
+            raise ValueError("Bakiye negatif olamaz.")
+h = Hesap(1000)
+h.bakiye = 1500  # Geçerli
+h.bakiye = -500  # Hata
+
+5. Lazy Evaluation (Tembel Değerlendirme)
+
+class VeriAnaliz:
+    def __init__(self, veri):
+        self.veri = veri
+        self._ortalama = None
+
+    @property
+    def ortalama(self):
+        if self._ortalama is None:
+            print("Ortalama hesaplanıyor...")
+            self._ortalama = sum(self.veri) / len(self.veri)
+        return self._ortalama
+
+analiz = VeriAnaliz([10, 20, 30])
+print(analiz.ortalama)  # Ortalama hesaplanıyor...
+print(analiz.ortalama)  # Daha önce hesaplandığı için doğrudan döner
+
+6. Bir Özelliği Yeniden Tanımlama
+
+class Ucret:
+    def __init__(self, saatlik_ucret):
+        self._saatlik_ucret = saatlik_ucret
+
+    @property
+    def saatlik_ucret(self):
+        return self._saatlik_ucret
+
+    @saatlik_ucret.setter
+    def saatlik_ucret(self, deger):
+        if deger < 0:
+            raise ValueError("Ücret negatif olamaz.")
+        self._saatlik_ucret = deger
+
+    @property
+    def aylik_ucret(self):
+        return self._saatlik_ucret * 160  # Ortalama çalışma saati
+
+u = Ucret(20)
+print(u.aylik_ucret)  # 3200
+u.saatlik_ucret = 25
+print(u.aylik_ucret)  # 4000
+
+7. Bağımlı Özellikler
+
+class Dikdortgen:
+    def __init__(self, en, boy):
+        self.en = en
+        self.boy = boy
+
+    @property
+    def alan(self):
+        return self.en * self.boy
+
+    @property
+    def kare_mi(self):
+        return self.en == self.boy
+
+d = Dikdortgen(5, 5)
+print(d.kare_mi)  # True
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+
