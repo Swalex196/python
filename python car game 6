@@ -1,0 +1,31 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class WayScrip : MonoBehaviour
+{
+    public GameObject way; // Yeni yol prefabı
+    bool yol_yapildi = false; // Yolun zaten oluşturulup oluşturulmadığını kontrol eden bayrak
+
+    void OnTriggerEnter2D(Collider2D temas)
+    {
+        // Eğer çarpışan nesne "mainCar" etiketine sahipse ve yol henüz yapılmamışsa
+        if (temas.gameObject.tag == "mainCar" && yol_yapildi == false)
+        {
+            // Yeni yolun oluşturulacağı pozisyonu belirle
+            Vector3 spawn_location = new Vector3(transform.position.x, transform.position.y + 10, 0);
+            
+            // Yeni yol prefabını belirlenen pozisyonda oluştur
+            Instantiate(way, spawn_location, Quaternion.identity);
+            
+            // Yolun yapıldığını işaretle
+            yol_yapildi = true;
+            
+            // Skoru artır
+            ScoreManager.skor += 10;
+
+            // Bu nesneyi 5 saniye sonra yok et
+            Destroy(this.gameObject, 5f);
+        }
+    }
+}
