@@ -1,0 +1,79 @@
+class Emlak:
+    def __init__(self,ilan_no, fiyat, adres):
+        self.ilan_no = ilan_no
+        self.fiyat = fiyat
+        self.adres = adres
+
+    def ilan_bilgileri(self):
+        return f"İlan No: {self.ilan_no}, Fiyat: {self.fiyat}, Adres: {self.adres}"
+    
+class Daire(Emlak):
+    def __init__(self,ilan_no, fiyat, adres, oda_sayısı, banyo_sayısı):
+        super().__init__(ilan_no,fiyat,adres)
+        self.oda_sayısı = oda_sayısı
+        self.banyo_sayısı = banyo_sayısı
+
+    def daire_bilgisi(self):
+        return f"{self.ilan_bilgileri()}, Oda sayısı:{self.oda_sayısı} , Banyo sayısı: {self.banyo_sayısı}  "
+
+class Ev(Daire):
+    def __init__(self,ilan_no,fiyat,adres,oda_sayısı, banyo_sayısı,durum):
+        super().__init__(ilan_no,fiyat, adres,oda_sayısı,banyo_sayısı)
+        self.durum = durum
+    def ev_bilgisi(self):
+        return f"{self.daire_bilgisi()}, Durum : {self.durum}"
+    
+class Ofis(Daire):
+    def __init__(self,ilan_no, fiyat, adres, oda_sayısı, banyo_sayısı,ortak_alan,ofis_durum):
+        super().__init__(ilan_no,fiyat, adres, oda_sayısı, banyo_sayısı,)
+        self.ortak_alan = ortak_alan
+        self.ofis_durum =ofis_durum
+
+    def ofis_bilgileri(self):
+        return f"{self.daire_bilgisi()},Ortak alan sayısı: {self.ortak_alan}, Durum: {self.ofis_durum}"
+
+class Trustlik(Emlak):
+    def __init__(self,ilan_no,fiyat,adres,rezervasyon_tarihi,günlük_durum):
+        super().__init__(ilan_no,fiyat,adres,)
+        self.rezervasyon_tarihi = rezervasyon_tarihi
+        self.günlük_durum = günlük_durum  # Önemli: Bu özellikler bir sınıfta da toplanabilir ve her sınıfta farklı şekilde işlenebilir. Bu örnekte sadece ev ve ofis sınıflarında bu özellikler kullanılmıştır.
+
+    def trustlik_bilgileri(self):
+        return f"{self.ilan_bilgileri()}, Rezervasyon Tarihi: {self.rezervasyon_tarihi }, Gün Sayısı: {self.günlük_durum}"    
+#Kullanıcıdan input alma kodu
+ilan_no_ev = int(input("Ev ilan numarasını giriniz:"))
+fiyat_ev= int(input("Evin fiyatını giriniz:"))
+adres_ev= input("Evin adres bilgilerini giriniz: ")
+oda_sayısı_ev= int(input("Evin oda sayısını giriniz:"))
+banyo_sayısı_ev= int(input("Evin banyo sayısını giriniz:"))
+durum_ev=input("Evin durumunu giriniz:")
+
+ev1=Ev(ilan_no_ev,fiyat_ev,adres_ev,oda_sayısı_ev,banyo_sayısı_ev,durum_ev)
+print(ev1.ev_bilgisi())
+
+ilan_no_ofis = int(input("Ofisin ilan numarasını giriniz:"))
+fiyat_ofis= int(input("Ofisin fiyatını giriniz:"))
+adres_ofis= input("Ofisin adres bilgilerini giriniz: ")
+oda_sayısı_ofis= int(input("Ofisin oda sayısını giriniz:"))
+banyo_sayısı_ofis= int(input("Ofisin banyo sayısını giriniz:"))
+durum_ofis=input("Ofisin durumunu giriniz:")
+ortak_alan_ofis= input("Ofisin ortak alan bilgisini giriniz:")
+
+ofis1=Ofis(ilan_no_ofis, fiyat_ofis, adres_ofis,oda_sayısı_ofis,banyo_sayısı_ofis,ortak_alan_ofis,durum_ofis)
+print(ofis1.ofis_bilgileri())
+
+ilan_no_trustlik = int(input("Trustlik evin ilan numarasını giriniz:"))
+fiyat_trustlik= int(input("Trustlik evin fiyatını giriniz:"))
+adres_trustlik= input("Trustlik evin adres bilgilerini giriniz: ")
+rezervasyon_tarihi_trustlik= input("Trustlik evin Rezervasyon edildiği tarihi giriniz:")
+günlük_durum_trustlik= input("Trustlik evin kaç günlük rezerve edildiğini giriniz:")
+
+ev1=Ev(ilan_no_ev,fiyat_ev,adres_ev,oda_sayısı_ev,banyo_sayısı_ev,durum_ev)
+print(ev1.ev_bilgisi())
+
+ofis1=Ofis(ilan_no_ofis, fiyat_ofis, adres_ofis,oda_sayısı_ofis,banyo_sayısı_ofis,ortak_alan_ofis,durum_ofis)
+print(ofis1.ofis_bilgileri())
+
+trustlik1=Trustlik(ilan_no_trustlik, fiyat_trustlik, adres_trustlik,rezervasyon_tarihi_trustlik,günlük_durum_trustlik)
+print(trustlik1.trustlik_bilgileri())
+
