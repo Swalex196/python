@@ -1,0 +1,40 @@
+class calisan():    # Yeni-alt sınıflar üretilecekse () koy, üretmeyeceksen koymana gerek yok
+    
+    zam_oranı = 1.05
+    per_say = 0
+
+    def __init__(self,ad,soyad,maas):
+        self.ad = ad
+        self.soyad = soyad
+        self.maas = maas
+        self.eposta = self.ad + self.soyad +"@gmail.com"
+        calisan.per_say += 1
+    def tamad(self):
+        return "adı : {} soyadı : {}".format(self.ad,self.soyad)
+    def arttir(self):
+        # self.maas = (self.maas * 1.05)
+        # self.maas = (self.maas * calisan.zam_oranı)
+        self.maas = (self.maas * self.zam_oranı)
+
+    def __repr__(self):     # Nesnenin tekrar gösterimi? için kullanılıyor(o nedemekse). Alttaki __str__ yi komut satırı yaparsak 25. satırdaki işlem bunu çağırır.
+        return "__repr__ döndü"
+    
+    def __str__(self):      # 25. satırdaki print bu komut sayesinde classı string olarak algılıyor.
+        return "{} , {}".format(self.tamad(),self.eposta)
+    def __add__(self,other):
+        return self.maas + other.maas
+
+personel1 = calisan("ali","demir",2500)
+personel2 = calisan("kerim","bakir",1950)
+
+print(personel1 + personel2)
+
+print(personel1)
+
+# print(personel1.__repr__())
+# print(repr(personel1))      # same shit
+# print(str(personel1))
+# print(personel1.__str__())  # same shit
+
+# print(int.__add__(5,9))
+# print(str.__add__("Melih","Erdem"))
