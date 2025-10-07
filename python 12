@@ -1,0 +1,140 @@
+from abc import ABC, abstractmethod
+
+# Telefon işlevsellikleri için interface (Soyut sınıf)
+class ITelefon(ABC):
+
+    @property
+    @abstractmethod
+    def model(self):
+        pass
+
+    @property
+    @abstractmethod
+    def uretici(self):
+        pass
+
+    @property
+    @abstractmethod
+    def batarya_kapasitesi(self):
+        pass
+
+    @abstractmethod
+    def ozellikleri_goster(self):
+        pass
+
+    @abstractmethod
+    def arama_yap(self, numara):
+        pass
+
+    @abstractmethod
+    def mesaj_gonder(self, numara, mesaj):
+        pass
+
+
+# IPhone sınıfı
+class IPhone(ITelefon):
+
+    def __init__(self, model, batarya_kapasitesi, kamera_megapiksel):
+        self._model = model
+        self._uretici = "Apple"
+        self._batarya_kapasitesi = batarya_kapasitesi
+        self._kamera_megapiksel = kamera_megapiksel
+        self._isletim_sistemi = "iOS"
+
+    @property
+    def model(self):
+        return self._model
+
+    @property
+    def uretici(self):
+        return self._uretici
+
+    @property
+    def batarya_kapasitesi(self):
+        return self._batarya_kapasitesi
+
+    def ozellikleri_goster(self):
+        print(f"Model: {self.model}")
+        print(f"Üretici: {self.uretici}")
+        print(f"Batarya Kapasitesi: {self.batarya_kapasitesi}mAh")
+        print(f"İşletim Sistemi: {self._isletim_sistemi}")
+        print(f"Kamera: {self._kamera_megapiksel} MP")
+
+    def arama_yap(self, numara):
+        print(f"{self.model} (Apple) numarayı arıyor: {numara}")
+
+    def mesaj_gonder(self, numara, mesaj):
+        print(f"{self.model} (Apple) numaraya mesaj gönderiyor: {numara} - '{mesaj}'")
+
+
+# Samsung sınıfı
+class Samsung(ITelefon):
+
+    def __init__(self, model, batarya_kapasitesi, suya_dayaniklilik):
+        self._model = model
+        self._uretici = "Samsung"
+        self._batarya_kapasitesi = batarya_kapasitesi
+        self._suya_dayaniklilik = suya_dayaniklilik
+        self._isletim_sistemi = "Android"
+
+    @property
+    def model(self):
+        return self._model
+
+    @property
+    def uretici(self):
+        return self._uretici
+
+    @property
+    def batarya_kapasitesi(self):
+        return self._batarya_kapasitesi
+
+    def ozellikleri_goster(self):
+        print(f"Model: {self.model}")
+        print(f"Üretici: {self.uretici}")
+        print(f"Batarya Kapasitesi: {self.batarya_kapasitesi}mAh")
+        print(f"İşletim Sistemi: {self._isletim_sistemi}")
+        print(f"Suya Dayanıklılık: {self._suya_dayaniklilik}")
+
+    def arama_yap(self, numara):
+        print(f"{self.model} (Samsung) numarayı arıyor: {numara}")
+
+    def mesaj_gonder(self, numara, mesaj):
+        print(f"{self.model} (Samsung) numaraya mesaj gönderiyor: {numara} - '{mesaj}'")
+
+
+# Ana program
+def main():
+    telefon = telefon_olustur()
+    telefon.ozellikleri_goster()
+
+    # Arama işlemi
+    numara = "555-1234"
+    telefon.arama_yap(numara)
+
+    # Mesaj gönderme işlemi
+    mesaj_numara = "555-5678"
+    mesaj = "Merhaba!"
+    telefon.mesaj_gonder(mesaj_numara, mesaj)
+
+
+def telefon_olustur():
+    while True:
+        uretici = input("Telefon üreticisini seçin (Apple veya Samsung): ").strip().lower()
+
+        if uretici == "apple" or uretici == "samsung":
+            model = input("Telefon modelini girin: ")
+            batarya_kapasitesi = int(input("Batarya kapasitesini girin (mAh): "))
+
+            if uretici == "apple":
+                kamera_megapiksel = int(input("Kamera megapiksel değerini girin: "))
+                return IPhone(model, batarya_kapasitesi, kamera_megapiksel)
+            elif uretici == "samsung":
+                suya_dayaniklilik = input("Suya dayanıklılık derecesini girin (örneğin, IP68): ")
+                return Samsung(model, batarya_kapasitesi, suya_dayaniklilik)
+        else:
+            print("Geçersiz üretici. Lütfen 'Apple' veya 'Samsung' giriniz.")
+
+
+if __name__ == "__main__":
+    main()
