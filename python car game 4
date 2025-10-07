@@ -1,0 +1,42 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class mainCar : MonoBehaviour
+{
+    public float dikey_hiz, yatay_hiz, varsayilan_hiz; // Dikey ve yatay hızlar, varsayılan hız
+    private float dikey_haraket, yatay_haraket; // Oyuncunun girdiği hareket değerleri
+    Rigidbody2D rb; // Aracın fizik bileşeni
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>(); // Rigidbody2D bileşenini al
+    }
+
+    void FixedUpdate()
+    {
+        // Kullanıcıdan hareket girdilerini al (W/S için dikey, A/D için yatay)
+        dikey_haraket = Input.GetAxis("Vertical");   // Dikey eksen hareketi
+        yatay_haraket = Input.GetAxis("Horizontal"); // Yatay eksen hareketi
+
+        // Rigidbody2D hızını ayarla (yatay ve dikey hareketleri hesaba katarak)
+        rb.velocity = new Vector3(
+            yatay_haraket * 50 * yatay_hiz * Time.deltaTime, // X ekseni hareketi
+            varsayilan_hiz + dikey_haraket * 50 * dikey_hiz * Time.deltaTime // Y ekseni hareketi
+        );
+
+        // Sağ sınırı kontrol et (x pozisyonu sağ sınırı aşarsa)
+        if (transform.position.x > 1.85f)
+        {
+            Vector3 right_limit = new Vector3(1.85f, transform.position.y); // Sağ sınır pozisyonu
+            transform.position = right_limit; // Aracın pozisyonunu sağ sınıra sabitle
+        }
+
+        // Sol sınırı kontrol et (x pozisyonu sol sınırı aşarsa)
+        if (transform.position.x < -1.82f)
+        {
+            Vector3 left_limit = new Vector3(-1.82f, transform.position.y); // Sol sınır pozisyonu
+            transform.position = left_limit; // Aracın pozisyonunu sol sınıra sabitle
+        }
+    }
+}
