@@ -1,0 +1,53 @@
+class calisan:
+    pass
+
+personel1 = calisan()
+personel1.ad = "ali"
+personel1.soyad = "demir"
+personel1.maas = 2500
+
+personel2 = calisan()
+personel2.ad = "kerim"
+personel2.soyad = "bakir"
+personel2.maas = 1950
+
+
+print(personel1)
+print(personel1.ad,personel1.soyad)
+
+print(personel2)
+print(personel2.ad, personel2.soyad)
+
+
+
+# Before
+#---------------------------------------------#
+# After
+
+
+class calisan:
+    katsayi = 31
+    def __init__(self,ad,soyad,maas):
+        self.ad = ad
+        self.soyad = soyad
+        self.maas = maas
+        self.eposta = self.ad + self.soyad +"@gmail.com"
+    def tamad(self):
+        return "adı : {} soyadı : {}".format(self.ad,self.soyad)
+
+personel1 = calisan("Ali","demir",2500)
+
+personel2 = calisan("kerim","bakir",1950)
+
+
+print(personel1)
+print(personel1.ad,personel1.soyad)
+print(personel1.eposta)
+print(personel1.tamad())
+
+print(personel2)
+print(personel2.ad, personel2.soyad)
+print(personel2.eposta)
+print(personel2.tamad())
+
+print(calisan.katsayi)
