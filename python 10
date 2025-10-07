@@ -1,0 +1,112 @@
+Nesne Nedir?
+Açıklama: Nesne (object), bir sınıftan (class) oluşturulmuş örneklerdir. Gerçek hayattaki nesneler gibi düşünülebilir; 
+her nesnenin bir durumu (veri/özellik) ve davranışı (metotları/fonksiyonları) vardır.
+
+# Gerçek hayattan örnek: Bir araba nesnesi
+# Durumlar: Marka, model, yıl, renk
+# Davranışlar: Hızlanmak, durmak, dönüş yapmak
+
+Class Nedir?
+Açıklama: Class, nesnelerin bir şablonudur. Nesnelerin özelliklerini ve davranışlarını tanımlar.
+Örneğin, "Araba" bir class’tır, ama "Mercedes 2021" bir nesnedir.
+
+# Araba sınıfı (class)
+class Araba:
+    # Yapıcı metot (constructor): Araba yaratıldığında çalışır
+    def __init__(self, marka, model, yil, renk):
+        self.marka = marka
+        self.model = model
+        self.yil = yil
+        self.renk = renk
+    
+    # Davranış (metot): Arabanın hızlanması
+    def hizlan(self):
+        print(f"{self.marka} {self.model} hızlanıyor!")
+    
+    # Davranış (metot): Arabanın durması
+    def dur(self):
+        print(f"{self.marka} {self.model} durdu.")
+
+# Nesne oluşturma (Mercedes aracı)
+araba1 = Araba("Mercedes", "C200", 2021, "Siyah")
+
+# Nesnenin davranışlarını kullanma
+araba1.hizlan()  # Mercedes C200 hızlanıyor!
+araba1.dur()     # Mercedes C200 durdu.
+
+self Anahtar Kelimesi
+Açıklama: self, sınıfın içindeki her bir nesneyi işaret eder. 
+Metotlar ve özellikler sınıfa ait olduğunda, bu metotlar ve özelliklere self ile ulaşırız.
+
+# self olmadan nesneye erişim sağlanamaz.
+class Kedi:
+    def __init__(self, isim, yas):
+        self.isim = isim
+        self.yas = yas
+    
+    def miyavla(self):
+        print(f"{self.isim} miyavladı!")
+
+kedi1 = Kedi("Pamuk", 2)
+kedi1.miyavla()  # Pamuk miyavladı!
+
+----------------------------------------------------------------------------------------------
+
+# Telefon sınıfı (class)
+class Telefon:
+    # Yapıcı metot (constructor)
+    def __init__(self, marka, model, batarya_yuzdesi):
+        self.marka = marka
+        self.model = model
+        self.batarya_yuzdesi = batarya_yuzdesi
+    
+    # Davranış (metot): Arama yapma
+    def arama_yap(self, numara):
+        print(f"{self.marka} {self.model} ile {numara} numarası aranıyor.")
+    
+    # Davranış (metot): Şarj etme
+    def sarj_et(self, miktar):
+        self.batarya_yuzdesi += miktar
+        if self.batarya_yuzdesi > 100:
+            self.batarya_yuzdesi = 100
+        print(f"{self.marka} {self.model} şarj edildi. Batarya % {self.batarya_yuzdesi}.")
+
+# Nesne oluşturma (iPhone telefonu)
+telefon1 = Telefon("iPhone", "13 Pro", 50)
+
+# Nesnenin davranışlarını kullanma
+telefon1.arama_yap("555-1234")  # iPhone 13 Pro ile 555-1234 numarası aranıyor.
+telefon1.sarj_et(30)            # iPhone 13 Pro şarj edildi. Batarya % 80.
+
+
+-----------------------------------------------------------------------------------------------
+
+# Bilgisayar sınıfı (class)
+class Bilgisayar:
+    # Yapıcı metot (constructor)
+    def __init__(self, marka, model, ram, depolama):
+        self.marka = marka
+        self.model = model
+        self.ram = ram
+        self.depolama = depolama
+    
+    # Davranış (metot): Bilgisayarı başlatmak
+    def baslat(self):
+        print(f"{self.marka} {self.model} bilgisayarı başlatılıyor...")
+    
+    # Davranış (metot): Bilgisayarı kapatmak
+    def kapat(self):
+        print(f"{self.marka} {self.model} bilgisayarı kapatılıyor.")
+    
+    # Davranış (metot): Bilgisayar özelliklerini görüntülemek
+    def ozellikler(self):
+        print(f"Marka: {self.marka}, Model: {self.model}, RAM: {self.ram}GB, Depolama: {self.depolama}GB")
+
+# Nesne oluşturma (Bir bilgisayar nesnesi)
+bilgisayar1 = Bilgisayar("Dell", "XPS 15", 16, 512)
+
+# Nesnenin davranışlarını kullanma
+bilgisayar1.baslat()       # Dell XPS 15 bilgisayarı başlatılıyor...
+bilgisayar1.ozellikler()   # Marka: Dell, Model: XPS 15, RAM: 16GB, Depolama: 512GB
+bilgisayar1.kapat()        # Dell XPS 15 bilgisayarı kapatılıyor.
+
