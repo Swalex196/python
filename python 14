@@ -1,0 +1,157 @@
+class Araba:
+    def __init__(self, marka, model, motor_hacmi):
+        self.marka = marka
+        self.model = model
+        self.motor_hacmi = motor_hacmi
+    
+    @staticmethod
+    def vergi_hesapla(motor_hacmi):
+        if motor_hacmi <= 1600:
+            return 1000
+        elif motor_hacmi <= 2000:
+            return 2000
+        else:
+            return 3000
+
+def araba_bilgilerini_al():
+    marka = input("Arabanın markasını girin: ")
+    model = input("Arabanın modelini girin: ")
+    motor_hacmi = int(input("Motor hacmini girin: "))
+
+    araba = Araba(marka, model, motor_hacmi)
+    
+    vergi = araba.vergi_hesapla(araba.motor_hacmi)
+    print(f"\nMarka: {araba.marka}")
+    print(f"Model: {araba.model}")
+    print(f"Motor Hacmi: {araba.motor_hacmi} cc")
+    print(f"Vergi: {vergi} TL")
+
+# Kullanıcıdan bilgi alıp yazdırma işlemini başlat
+araba_bilgilerini_al()
+
+--------------------------------------------------------------------
+
+class Araba:
+    def __init__(self, marka, model, motor_hacmi):
+        self.marka = marka
+        self.model = model
+        self.motor_hacmi = motor_hacmi
+
+    @staticmethod
+    def vergi_hesapla(motor_hacmi):
+        match motor_hacmi:
+            case hacim if hacim <= 1600:
+                return 1000
+            case hacim if hacim <= 2000:
+                return 2000
+            case _:
+                return 3000
+
+def araba_bilgilerini_al_ve_islem_yap():
+    marka = input("Arabanın markasını girin: ")
+    model = input("Arabanın modelini girin: ")
+    motor_hacmi = int(input("Motor hacmini girin: "))
+
+    araba = Araba(marka, model, motor_hacmi)
+    vergi = araba.vergi_hesapla(araba.motor_hacmi)
+
+    match vergi:
+        case 1000:
+            print(f"{araba.marka} {araba.model} arabanız düşük vergi diliminde.")
+        case 2000:
+            print(f"{araba.marka} {araba.model} arabanız orta vergi diliminde.")
+        case 3000:
+            print(f"{araba.marka} {araba.model} arabanız yüksek vergi diliminde.")
+
+    print(f"Ödenecek vergi: {vergi} TL")
+
+# Kullanıcıdan bilgi alıp işlemi başlat
+araba_bilgilerini_al_ve_islem_yap()
+-------------------------------------------------------------------------------------
+class Ogrenci:
+    def __init__(self, ad, ders, notu):
+        self.ad = ad
+        self.ders = ders
+        self.notu = notu
+
+    @staticmethod
+    def not_durumu(notu):
+        if notu >= 85:
+            return "Geçti (Pekiyi)"
+        elif 70 <= notu < 85:
+            return "Geçti (İyi)"
+        elif 50 <= notu < 70:
+            return "Şartlı Geçti"
+        else:
+            return "Kaldı"
+
+def ogrenci_bilgilerini_al_ve_durumu_goster():
+    ad = input("Öğrencinin adını girin: ")
+    ders = input("Dersin adını girin: ")
+    notu = int(input(f"{ders} dersi için öğrencinin notunu girin: "))
+
+    ogrenci = Ogrenci(ad, ders, notu)
+    durum = ogrenci.not_durumu(ogrenci.notu)
+
+    print(f"\nÖğrenci: {ogrenci.ad}")
+    print(f"Ders: {ogrenci.ders}")
+    print(f"Not: {ogrenci.notu}")
+    print(f"Sonuç: {durum}")
+
+# Kullanıcıdan bilgi alıp işlemi başlat
+ogrenci_bilgilerini_al_ve_durumu_goster()
+--------------------------------------------------------------------------------------
+
+class Ogrenci:
+    def __init__(self, ad, soyad):
+        self.ad = ad
+        self.soyad = soyad
+        self.dersler = []
+
+    def ders_ekle(self, ders):
+        self.dersler.append(ders)
+
+    def dersleri_goster(self):
+        print(f"\nÖğrenci: {self.ad} {self.soyad}")
+        for ders in self.dersler:
+            ders.ders_bilgisi()
+
+
+class Ders:
+    def __init__(self, ders_adi, notu):
+        self.ders_adi = ders_adi
+        self.notu = notu
+
+    def not_durumu(self):
+        if self.notu >= 85:
+            return "Geçti (Pekiyi)"
+        elif 70 <= self.notu < 85:
+            return "Geçti (İyi)"
+        elif 50 <= self.notu < 70:
+            return "Şartlı Geçti"
+        else:
+            return "Kaldı"
+
+    def ders_bilgisi(self):
+        print(f"Ders: {self.ders_adi} | Not: {self.notu} | Durum: {self.not_durumu()}")
+
+
+def ogrenci_bilgilerini_al():
+    ad = input("Öğrencinin adını girin: ")
+    soyad = input("Öğrencinin soyadını girin: ")
+    ogrenci = Ogrenci(ad, soyad)
+
+    ders_sayisi = int(input("Kaç ders eklemek istiyorsunuz?: "))
+
+    for _ in range(ders_sayisi):
+        ders_adi = input("Dersin adını girin: ")
+        notu = int(input(f"{ders_adi} dersi için öğrencinin notunu girin: "))
+        ders = Ders(ders_adi, notu)
+        ogrenci.ders_ekle(ders)
+
+    ogrenci.dersleri_goster()
+
+
+# Kullanıcıdan bilgi alıp işlemi başlat
+ogrenci_bilgilerini_al()
+
